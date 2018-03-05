@@ -1,0 +1,371 @@
+\documentclass[10pt,fleqn]{article} % Default font size and left-justified equations
+\usepackage[%
+    pdftitle={Modélisation dynamique},
+    pdfauthor={Xavier Pessoles}]{hyperref}
+
+    
+\input{style/new_style}
+\input{style/macros_SII}
+\usepackage{multicol}
+\usepackage{siunitx}
+%\usepackage{picins}
+\fichetrue
+%\fichefalse
+
+\proftrue
+\proffalse
+
+\tdtrue
+%\tdfalse
+
+\courstrue
+\coursfalse
+
+
+\def\classe{\textsf{PSI$\star$ -- MP}}
+\def\xxnumpartie{Cycle 99}
+\def\xxpartie{Révisions}
+
+\def\xxnumchapitre{Statique \vspace{.2cm}}
+\def\xxchapitre{\hspace{.12cm} Modèle Local -- Modèle global}
+
+
+\def\discipline{Sciences \\Industrielles de \\ l'Ingénieur}
+\def\xxtete{Sciences Industrielles de l'Ingénieur}
+
+
+
+
+\def\xxtitreexo{Exercice d'applcaition}
+\def\xxsourceexo{\hspace{.2cm} S. Genouël}
+
+
+\def\xxposongletx{2}
+\def\xxposonglettext{1.45}
+\def\xxposonglety{20}
+%\def\xxonglet{Part. 1 -- Ch. 3}
+\def\xxonglet{\textsf{Cycle 99}}
+
+\def\xxactivite{Révisions}
+\def\xxauteur{\textsl{S. Genouël}\\\textsl{Pôle Chateaubriand -- Joliot Curie}}
+
+\def\xxcompetences{%
+\textsl{%
+\textbf{Savoirs et compétences :}\\
+%\begin{itemize}[label=\ding{112},font=\color{ocre}] 
+%\item \textit{Mod2.C34} : chaînes de solides.
+%\item \textit{Mod2.C34} : degré de mobilité du modèle;
+%\item \textit{Mod2.C34} : degré d’hyperstatisme du modèle;
+%\item \textit{Mod2.C34.SF1} : déterminer les conditions géométriques associées à l’hyperstatisme;
+%\item \textit{Mod2.C34} : résoudre le système associé à la fermeture cinématique et en déduire le degré de mobilité et d’hyperstatisme.
+%\end{itemize}
+}}
+
+\def\xxfigures{
+%\includegraphics[width=.6\linewidth]{images/fig_01}
+}%figues de la page de garde
+
+\def\xxpied{%
+Cycle 08 -- Analyse de la chaîne d'information des systèmes \\%dans le but de déterminer les contraintes géométriques dans les mécanismes\\% afin de valider leurs performances.\\
+Chapitre 2 -- \xxactivite%
+}
+
+\setcounter{secnumdepth}{5}
+%---------------------------------------------------------------------------
+
+\usepackage{pgfplots}
+\begin{document}
+\def\pathfig{images}
+%\chapterimage{png/Fond_Cin}
+\input{style/new_pagegarde}
+\vspace{4.5cm}
+\pagestyle{fancy}
+\thispagestyle{plain}
+
+\def\columnseprulecolor{\color{ocre}}
+\setlength{\columnseprule}{0.4pt} 
+
+\def\pathfig{images}
+
+
+\ifprof
+\begin{multicols}{2}
+\else
+\begin{multicols}{2}
+\fi
+
+\subsection*{Exercice 1 : Assemblage par frettage}
+\ifthenelse{\boolean{prof}}{}{}
+%\begin{minipage}[c]{.5\linewidth}
+Le frettage consiste à encastrer deux pièces en utilisant le phénomène d’adhérence. 
+ 
+Avant l’assemblage réalisé à l’aide d’une presse, l’arbre 1 
+possède un diamètre légèrement supérieur à celui de l’alésage 
+(trou cylindrique) de la pièce 2 dans laquelle il vient se loger. 
+ 
+Après frettage, il subsiste donc une pression de contact $p$ 
+(souvent supposée uniforme sur toute la surface de contact) 
+entre les deux pièces. 
+
+ 
+Les caractéristiques de cet assemblage par frettage sont les suivantes : 
+\begin{itemize}
+\item $R$ : rayon de l’arbre 1;
+\item $L$ : longueur du contact; 
+\item $f$ : facteur d’adhérence entre les deux pièces.
+\end{itemize}
+
+
+\begin{center}
+\includegraphics[width=\linewidth]{images/fig_01}
+\end{center}
+
+
+
+\begin{obj}
+Déterminer l’effort axial maximal transmissible et le couple maximal transmissible d’une pièce à 
+l’autre.
+\end{obj}
+
+\subsection*{Effort axial maximal transmissible}
+
+L’effort axial maximal transmissible correspond à la valeur maximale de la 
+composante axiale de la résultante de l’action mécanique qui peut être transmise 
+d’une pièce à l’autre sans qu’elles se désolidarisent. 
+ 
+Pour simplifier notre étude, on considère la pièce 2 fixe et on cherche à déterminer 
+la composante axiale de la résultante de l’action mécanique à appliquer à la pièce 1 
+pour atteindre le glissement de 1/2 suivant $-\vect{z}$. 
+
+
+\begin{center}
+\includegraphics[width=.7\linewidth]{images/fig_02}
+\end{center}
+
+\subparagraph{}
+\textit{Refaire en grand les 2 schémas ci-dessous : un dans le plan $(\vect{y}, \vect{z})$ et l’autre dans le plan $(\vect{x}, \vect{y})$, en plaçant les actions élémentaires normale et tangentielle de 2 sur 1 en un point $Q$ quelconque de la surface de contact. }
+
+\ifprof
+\begin{corrige}
+\begin{center}
+\includegraphics[width=\linewidth]{images/cor_01}
+\end{center}
+
+\end{corrige}
+\else
+\fi
+
+
+\begin{center}
+\includegraphics[width=.9\linewidth]{images/fig_03}
+\end{center}
+
+\subparagraph{}
+\textit{Exprimer $\vect{\text{d}F_{2\rightarrow 1}(Q)}$.}
+
+\ifprof
+\begin{corrige}
+Pour commencer, on a : $\vect{\text{d}F_{2\rightarrow 1}(Q)} = \vect{\text{d}N_{2\rightarrow 1}(Q)}+\vect{\text{d}T_{2\rightarrow 1}(Q)}$. 
+
+D'une part, $\vect{\text{d}N_{2\rightarrow 1}(Q)}$ est normal au contact et va <<~de 2 vers 1~>>; donc $\vect{\text{d}N_{2\rightarrow 1}(Q)}=-\text{d}N_{2\rightarrow 1}(Q)\vect{u}$. La pression étant supposée uniforme, on a alors : $\vect{\text{d}N_{2\rightarrow 1}(Q)}=-p\text{d}S\vect{u}$ avec $\text{dS} = R\text{d}\theta \dd z$. 
+
+D'autre part, $\vect{\text{d}T_{2\rightarrow 1}(Q)}$ s'oppose à la vitesse de glissement de 1 par rapport à 2; donc $\vect{\text{d}T_{2\rightarrow 1}(Q)}=+\text{d}T_{2\rightarrow 1}(Q)\vect{z}$. De plus, d'après la loi de Coulomb, $\text{d}T_{2\rightarrow 1}(Q)=f\text{d}N_{2\rightarrow 1}(Q)$. On a donc $\vect{\text{d}T_{2\rightarrow 1}(Q)}=fp\vect{z} R\text{d}\theta \dd z$. 
+
+Au final, $\vect{\text{d}F_{2\rightarrow 1}(Q)}=-p\text{d}S\vect{u}+fp R\text{d}\theta \dd z \vect{z}$ avec $\theta\in[0,2\pi]$ et $z\in[0,L]$.
+\end{corrige}
+\else
+\fi
+
+\subparagraph{}
+\textit{Déterminer la résultante axiale maximale transmissible en fonction de $p$ et des 
+caractéristiques géométriques du frettage. }
+
+
+\ifprof
+\begin{corrige}
+On a $F_a = \int  \vect{\text{d}F_{2\rightarrow 1}(Q)} \cdot \vect{z} = \iint fp R\text{d}\theta \dd z=  fp RL2\pi $.
+\end{corrige}
+\else
+\fi
+
+
+\subsection*{Couple maximal transmissible}
+
+Le couple (ou moment) maximal transmissible correspond à la valeur maximale 
+de la composante sur l’axe $\vect{z}$ du moment résultant de l’action mécanique qui peut 
+être transmise d’une pièce à l’autre sans qu’elles se désolidarisent. 
+ 
+Pour simplifier notre étude, on considère la pièce 2 fixe et on cherche à 
+déterminer la composante sur l’axe $\vect{z}$ du moment résultant de l’action mécanique 
+à appliquer à la pièce 1 pour atteindre le glissement de 1/2 autour de $\vect{z}$.
+ 
+\begin{center}
+\includegraphics[width=.7\linewidth]{images/fig_04}
+\end{center}
+
+\subparagraph{}
+\textit{Refaire en grand les 2 schémas ci-dessous : un dans le plan $(\vect{y}, \vect{z})$ et l’autre dans le plan $(\vect{x}, \vect{y})$, en plaçant les actions élémentaires normale et tangentielle de 2 sur 1 en un point $Q$ quelconque de la surface de contact. }
+\ifprof
+\begin{corrige}~\\
+
+\begin{center}
+\includegraphics[width=.8\linewidth]{images/cor_02}
+\end{center}
+
+\end{corrige}
+\else
+\fi
+
+
+
+\begin{center}
+\includegraphics[width=.9\linewidth]{images/fig_05}
+\end{center}
+
+\subparagraph{}
+\textit{Exprimer $\vect{dF_{2\rightarrow 1}(Q)}$.}
+
+\ifprof
+\begin{corrige}
+Pour commencer, on a : $\vect{\text{d}F_{2\rightarrow 1}(Q)} = \vect{\text{d}N_{2\rightarrow 1}(Q)}+\vect{\text{d}T_{2\rightarrow 1}(Q)}$. 
+
+D'une part, $\vect{\text{d}N_{2\rightarrow 1}(Q)}$ est normal au contact et va <<~de 2 vers 1~>>; donc $\vect{\text{d}N_{2\rightarrow 1}(Q)}=-\text{d}N_{2\rightarrow 1}(Q)\vect{u}$. La pression étant supposée uniforme, on a alors : $\vect{\text{d}N_{2\rightarrow 1}(Q)}=-p\text{d}S\vect{u}$ avec $\text{dS} = R\text{d}\theta \dd z$. 
+
+D'autre part, $\vect{\text{d}T_{2\rightarrow 1}(Q)}$ s'oppose à la vitesse de glissement de 1 par rapport à 2; donc $\vect{\text{d}T_{2\rightarrow 1}(Q)}=+\text{d}T_{2\rightarrow 1}(Q)\vect{v}$. De plus, d'après la loi de Coulomb, $\text{d}T_{2\rightarrow 1}(Q)=f\text{d}N_{2\rightarrow 1}(Q)$. On a donc $\vect{\text{d}T_{2\rightarrow 1}(Q)}=fp\vect{v} R\text{d}\theta \dd z$. 
+
+Enfin, $\vect{v}=\cos\theta\vect{x}+\sin\theta\vect{y}$ et $\vect{v}=\cos\theta\vect{y}-\sin\theta\vect{x}$.
+
+Au final, $\vect{\text{d}F_{2\rightarrow 1}(Q)}=-p\text{d}S\vect{u}+fp R\text{d}\theta \dd z \vect{v}$ avec $\theta\in[0,2\pi]$ et $z\in[0,L]$.
+\end{corrige}
+\else
+\fi
+
+
+\subparagraph{}
+\textit{Déterminer le couple maximal transmissible en fonction de $p$ et des 
+caractéristiques géométriques du frettage.}
+
+\ifprof
+\begin{corrige}
+$\dd C_a = \left(\vect{OM}\wedge\vect{\text{d}F_{2\rightarrow 1}(Q)}\right) \cdot \vect{z}
+=R\vect{u}\wedge \left( -p\text{d}S\vect{u}+fp R\text{d}\theta \dd z \vect{v}\right)\cdot \vect{z}
+=fp R^2\text{d}\theta \dd z $. En intégrant,  $C_a = 2\pi fLp R^2$.
+\end{corrige}
+\else
+\fi
+
+\subsection*{Exercice 2 : Embrayage à friction monodisque de véhicules automobiles (surfaces de friction plane)}
+\setcounter{exo}{0}
+Situé en amont des boîtes à vitesses, l'embrayage monodisque a pour rôle de désolidariser le moteur de la 
+boîte afin de pouvoir changer de rapports, ou lorsque le véhicule est arrêté moteur tournant au ralenti. 
+
+\begin{center}
+\includegraphics[width=.9\linewidth]{images/fig_06}
+\end{center}
+
+\textbf{Position embrayée :} le disque est fortement serré entre deux surfaces lisses (plateau et volant) par la 
+pression des ressorts. Le tout tournera donc d'un bloc, sans glissement et sans pertes. 
+
+\textbf{Position débrayée :} la poussée du conducteur sur la pédale contrebalance la force des ressorts. Le disque, sous l'effet des vibrations, coulisse alors légèrement sur ses cannelures pour se positionner entre les surfaces lisses (plateau et volant), sans les toucher. Les vitesses angulaires du volant-plateau (solidaires du vilebrequin) et du disque (solidaire des roues par l'intermédiaire de la transmission) peuvent alors différer 
+sans que le disque ne frotte. 
+
+On modélise l'embrayage par 2 disques creux identiques (1 et 2) en contact grâce à une 
+action axiale $\vect{F_a}$. 
+ 
+Le rayon intérieur des 2 disques vaut : $R_{\text{min}}$. 
+Le rayon extérieur des 2 disques vaut : $R_{\text{max}}$. 
+On donne $f$ le facteur d’adhérence entre les deux pièces. 
+
+
+
+\begin{center}
+\includegraphics[width=.9\linewidth]{images/fig_07}
+\end{center}
+
+
+\subparagraph{}
+\textit{Refaire en grand les 2 schémas ci-dessus : un dans le plan $(\vect{y}, \vect{z})$ et l’autre dans le plan $(\vect{x}, \vect{y})$, en plaçant les actions élémentaires normale et tangentielle de 2 sur 1 en un point $Q$ quelconque de la surface de contact.}
+
+\subparagraph{}
+\textit{Exprimer $\vect{dF_{2\rightarrow 1}(Q)}$.}
+
+\subparagraph{}
+\textit{Déterminer le couple maximal transmissible en fonction de $p$ et des caractéristiques 
+géométriques de l’embrayage.}
+
+\subparagraph{}
+\textit{Déterminer l’action axiale $\vect{F_a}$ qui crée les $\vect{dN}$ en fonction de $p$ et des caractéristiques géométriques de l’embrayage.}
+
+\subparagraph{}
+\textit{En déduire le couple maximal transmissible en fonction de $F_a$ (et non en fonction de $p$) et des caractéristiques géométriques de l’embrayage.}
+
+\subsection*{Exercice 3 : Embrayage conique des synchroniseurs de boite de vitesses (surface de friction coniques)} 
+\setcounter{exo}{0}
+\begin{center}
+\includegraphics[width=.9\linewidth]{images/fig_08}
+\end{center}
+
+Les boîtes de vitesses automobiles ont pour particularité d'avoir tous leurs engrenages en prise. 
+Les pignons et roues situés sur l’arbre primaire (arbre qui sera lié à l'arbre moteur) sont en liaison pivot sur ce dernier donc ils tournent tous à des vitesses différentes autour de cet arbre. Ces pignons et roues sont 
+appelés pignons « fous » et roues « folles » 
+
+Les pignons et roues situés sur l’arbre secondaire sont solidaires de ce dernier donc ils tournent tous à la même vitesse. 
+
+Le rôle de la boîte de vitesses est de mettre en liaison encastrement un des pignons (ou roues) fous de l’arbre primaire avec l’arbre primaire. Or pour pouvoir solidariser un des pignons fous et son arbre, il faut synchroniser leurs régimes de vitesses, et c'est là le rôle des synchroniseurs. 
+
+On modélise le pignon fou et l'anneau de synchronisation par 2 cônes en contact 
+grâce à une action axiale $\vect{F_a}$. 
+ 
+Le rayon maximal des 2 cônes vaut : $R_{\text{max}}$. 
+Le rayon minimal des 2 cônes vaut : $R_{\text{min}}$. 
+Le demi-angle au sommet des 2 cônes vaut $\alpha$. 
+On donne $f$le facteur d’adhérence 
+entre les deux pièces.
+
+
+\begin{center}
+\includegraphics[width=.9\linewidth]{images/fig_09}
+\end{center}
+
+
+
+
+\subparagraph{}
+\textit{Refaire en grand les 2 schémas ci-dessus : un dans le plan $(\vect{y}, \vect{z})$ et l’autre dans le plan $(\vect{x}, \vect{y})$, en plaçant les actions élémentaires normale et tangentielle de 2 sur 1 en un point $Q$ quelconque de la surface de contact.}
+
+\subparagraph{}
+\textit{Exprimer $\vect{dF_{2\rightarrow 1}(Q)}$.}
+
+\subparagraph{}
+\textit{Déterminer le couple maximal transmissible en fonction de $p$ et des caractéristiques 
+géométriques de l’embrayage.}
+
+\subparagraph{}
+\textit{Déterminer l’action axiale $\vect{F_a}$ qui crée les $\vect{dN}$ en fonction de $p$ et des caractéristiques géométriques de l’embrayage.}
+
+\subparagraph{}
+\textit{En déduire le couple maximal transmissible en fonction de $F_a$ (et non en fonction de $p$) et des caractéristiques géométriques de l’embrayage.}
+
+
+
+
+\ifprof
+\end{multicols}
+\else
+\end{multicols}
+\fi
+
+
+\end{document}
+
+
+
+
+
+\subparagraph{}
+\textit{}
+\ifprof
+\begin{corrige}
+\end{corrige}\else\fi
+
+
