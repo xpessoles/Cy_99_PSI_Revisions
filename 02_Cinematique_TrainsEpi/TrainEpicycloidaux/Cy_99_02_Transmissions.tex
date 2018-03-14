@@ -142,7 +142,7 @@ On note $Z_i$ le nombre de dents de la roue $i$ (sauf cas où deux roues dentée
 
 
 \subsection*{Transmission de la cheville du robot NAO}
-
+\setcounter{exo}{0}
 NAO est un robot humanoïde conçu par la société française Aldebaran. \`A l'origine il a été conçu comme prototype du robot Romeo, destiné à être au service des personnes. NAO est utilisé à l'heure actuelle dans la recherche en robotique et dans des domaines pédagogiques. 
 \begin{obj}
 On s'intéresse ici à la cheville NAO. On cherche à savoir si, à partir du moteur retenu par le constructeur, la chaîne de transmission de puissance permet de vérifier les exigences 1.1.1.1 et 1.1.1.2.
@@ -157,10 +157,10 @@ On s'intéresse ici à la cheville NAO. On cherche à savoir si, à partir du mo
 \else
 
 \begin{center}
-\includegraphics[width=\linewidth]{images/Req}
+\includegraphics[width=\linewidth]{images/req.pdf}
 \end{center}
 \begin{center}
-\includegraphics[width=\linewidth]{images/BDD}
+\includegraphics[width=\linewidth]{images/bdd.pdf}
 \end{center}
 
 %\begin{minipage}[c]{.48\linewidth}
@@ -225,30 +225,21 @@ Roue de sortie & 0,7 & 36      & 25,2 \\ \hline
 \hline
 Roue dentée & Module & Nb dents & Diamètre \\
 \hline
-& && \\ 
 Pignon 03 20 & && \\ 
-&& & \\ \hline
-&& & \\ 
+\hline
 Mobile Inf1 Roue & && \\ 
-&& & \\ \hline
-&& & \\ 
+\hline
 Mobile Inf1 Pignon & && \\ 
-&& & \\ \hline
-&& & \\ 
+\hline
 Mobile Inf2 Roue & && \\ 
-&& & \\ \hline
-&& & \\ 
+\hline
 Mobile Inf2 Pignon & && \\ 
-&& & \\ \hline
-&& & \\ 
+\hline
 Mobile Inf4 Roue & && \\ 
-&& & \\ \hline
-&& & \\ 
+\hline
 Mobile Inf4 Pignon & && \\ 
-&& & \\ \hline
-&& & \\ 
+\hline
 Roue de sortie & && \\
-&& & \\ 
 \hline
 \end{tabular}
 \end{center}
@@ -292,15 +283,39 @@ Le rapport de transmission du second train est de 201,3 ce qui est compatible av
 \fi
 
 
+\subsection*{Transmission du ControlX}
+\begin{center}
+\includegraphics[width=\linewidth]{images/controlx}
+\end{center}
 
-\begin{enumerate}
-\item $\dfrac{\omega(3/0)}{\omega(1/0)}$
-\item $\dfrac{\omega(4/0)}{\omega(1/0)}$
-\item $\dfrac{\omega(4/0)}{\omega(3/0)}$
-\item $\dfrac{\omega(3/0)}{\omega(1/0)}$
-\item $\dfrac{\omega(3/0)}{\omega(1/0)}$
-\item $\dfrac{\omega(3/0)}{\omega(1/0)}$
-\end{enumerate}
+On note $R$ le rayon des poulies 3 et 6, $k$ le rapport de réduction du réducteur.
+
+\subparagraph*{}
+\textit{Exprimer la vitesse du solide 5 en fonction de la fréquence de rotation du moteur.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+\subparagraph*{}
+\textit{Exprimer $F_{ext}$ en fonction du couple moteur.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+
+%
+%\begin{enumerate}
+%\item $\dfrac{\omega(3/0)}{\omega(1/0)}$
+%\item $\dfrac{\omega(4/0)}{\omega(1/0)}$
+%\item $\dfrac{\omega(4/0)}{\omega(3/0)}$
+%\item $\dfrac{\omega(3/0)}{\omega(1/0)}$
+%\item $\dfrac{\omega(3/0)}{\omega(1/0)}$
+%\item $\dfrac{\omega(3/0)}{\omega(1/0)}$
+%\end{enumerate}
 
 
 
