@@ -1,0 +1,334 @@
+\documentclass[10pt,fleqn]{article} % Default font size and left-justified equations
+\usepackage[%
+    pdftitle={Modélisation dynamique},
+    pdfauthor={Xavier Pessoles}]{hyperref}
+
+    
+\input{style/new_style}
+\input{style/macros_SII}
+\usepackage{multicol}
+\usepackage{siunitx}
+%\usepackage{picins}
+\fichetrue
+%\fichefalse
+
+\proftrue
+\proffalse
+
+\tdtrue
+%\tdfalse
+
+\courstrue
+\coursfalse
+
+
+\def\classe{\textsf{PSI$\star$ -- MP}}
+\def\xxnumpartie{Cycle 99}
+\def\xxpartie{Révisions}
+
+\def\xxnumchapitre{}%Chapitre 1 \vspace{.2cm}}
+\def\xxchapitre{}%\hspace{.12cm} Approche énergétique}
+
+\def\discipline{Sciences \\Industrielles de \\ l'Ingénieur}
+\def\xxtete{Sciences Industrielles de l'Ingénieur}
+
+
+
+
+\def\xxtitreexo{Gouverne de profondeur d'un airbus}
+\def\xxsourceexo{\hspace{.2cm} \textsl{}}%Équipe PT La Martinière Monplaisir -- X ENS PSI}
+
+
+
+\def\xxposongletx{2}
+\def\xxposonglettext{1.45}
+\def\xxposonglety{20}
+%\def\xxonglet{Part. 1 -- Ch. 3}
+\def\xxonglet{\textsf{Cycle 99}}
+
+\def\xxactivite{TP}
+\def\xxauteur{\textsl{Équipe PT La Martinière Monplaisir}}
+
+\def\xxcompetences{%
+\textsl{%
+\textbf{Savoirs et compétences :}\\
+%Les sources sont associées par un \emph{hacheur série}. La détermination des grandeurs électriques associées à ce montage permet de conclure vis à vis du cahier des charges.
+%\noindent \textbf{Résoudre :} à partir des modèles retenus :
+%\begin{itemize}[label=\ding{112},font=\color{ocre}] 
+%\item choisir une méthode de résolution analytique, graphique, numérique;
+%\item mettre en \oe{}uvre une méthode de résolution.
+%\end{itemize}
+%\begin{itemize}[label=\ding{112},font=\color{ocre}] 
+%\item \textit{Rés -- C1.1 :} Loi entrée sortie géométrique et cinématique -- Fermeture géométrique.
+%\end{itemize}
+%
+%\noindent \textit{Mod2 -- C4.1 :} Représentation par schéma bloc.
+}}
+
+\def\xxfigures{
+\includegraphics[width=.8\linewidth]{images/fig_00}
+}%figues de la page de garde
+
+
+\def\xxpied{%
+Cycle 99 -- Révisions\\% afin de valider leurs performances.\\
+ -- \xxactivite%
+}
+
+\setcounter{secnumdepth}{5}
+%---------------------------------------------------------------------------
+
+\usepackage{pgfplots}
+\begin{document}
+\def\pathfig{images}
+%\chapterimage{png/Fond_Cin}
+\input{style/new_pagegarde}
+\vspace{4.5cm}
+\pagestyle{fancy}
+\thispagestyle{plain}
+
+\def\columnseprulecolor{\color{ocre}}
+\setlength{\columnseprule}{0.4pt} 
+
+\def\pathfig{images}
+
+\ifprof
+%\begin{multicols}{2}
+\else
+\begin{multicols}{2}
+\fi
+
+
+\subsection*{Présentation du système}
+\setcounter{subparagraph}{0}
+
+On se propose d’étudier la réalisation de la fonction « Asservir en position la gouverne de profondeur ». On se limitera à l’asservissement en position de la servocommande d’une gouverne intérieure. 
+
+\begin{center}
+\includegraphics[width=\linewidth]{images/fig_01}
+
+\includegraphics[width=\linewidth]{images/fig_02}
+\end{center}
+
+Nous allons seulement étudier l’asservissement en position de la tige du vérin (c’est-à-dire la première boucle d’asservissement) dont le cahier des charges est le suivant.
+
+\begin{center}
+\textbf{Asservir en position la tige du vérin }
+\begin{tabular}{|p{.45\linewidth}|p{.45\linewidth}|}
+\hline
+ Exigence	& Niveaux \\ \hline\hline
+ Marge de phase	 & $\geq 60\degres $\\ \hline
+ Marge de gain	 & \SI{10}{dB} \\ \hline
+ Ecart de position&	$\varepsilon_p=\SI{0}{mm}$\\ \hline
+ Ecart de traînage pour une consigne $x_{2c} (t)=0,1 t $ & $\varepsilon_T<\SI{0.2}{mm}$\\ \hline
+ Temps de réponse à 5\% (échelon)& $tR_{5\%}< \SI{0.045}{s}$ \\ \hline
+ Dépassement (échelon)	& $D\%< 5\%$\\ \hline
+\end{tabular}
+\end{center}
+
+La chaîne d’énergie qui permet de modifier l’inclinaison de gouverne de profondeur est composée d’une servovalve comme actionneur et d’un vérin comme effecteur. Comme le montre la figure suivante, il y a deux boucles d’asservissement pour asservir en position la gouverne de profondeur. On note $i$ l'intensité alimentant la servovalve, $Q$ le débit alimentant le vérin, $\beta$ l'inclinaison des gouvernes par rapport au PHR et $x_2$ la position de la tige du vérin.
+ 
+
+
+
+\begin{center}
+\includegraphics[width=\linewidth]{images/fig_03}
+\end{center}
+
+
+On modélise cet asservissement par le schéma bloc suivant.
+\begin{center}
+\includegraphics[width=\linewidth]{images/fig_04}
+\end{center}
+$C(p)$ est la fonction de transfert du correcteur, $FTBO_{nc}(p)$ est la fonction de transfert de la FTBO non corrigée : 
+$$
+FTBO_{nc}(p)=\dfrac{0,01}{p\left(1+\dfrac{2 0,0032}{161,7}p + \dfrac{p^2}{161,7^2} \right)}.
+$$
+
+\textbf{Les questions seront traitées de manière analytique en TD puis en utilisant Scilab en TP.}
+
+
+\subparagraph{}
+\textit{Déterminer les niveaux des 6 critères du cahier des charges. Conclure.
+L’objectif du TP est de trouver les caractéristiques d’un correcteur qui permet de valider le cahier des charges.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+Action proportionnelle
+
+On choisit d’utiliser un correcteur proportionnel dont la fonction de transfert est $C(p)=K_p$.
+\subparagraph{}
+\textit{Trouver la plus grande valeur de $K_p$ qui permet de vérifier les marges de stabilité.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+\subparagraph{}
+\textit{Expliquer pourquoi l’écart de position (ou écart statique) ne dépend pas de la valeur de $K_p$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+\subparagraph{}
+\textit{Trouver la plus grande valeur de $K_p$ qui permet de vérifier l'écart de trainage. Conclure.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+\subparagraph{}
+\textit{Faire un bilan, dans un tableau, de l’influence de $K_p$ (pour $K_p>1$) sur les 3 performances : stabilité, précision et rapidité. Quelles sont les performances qui vont ensemble et celles qui sont antagonistes ?}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+\subparagraph{}
+\textit{Un correcteur proportionnel suffit-il à vérifier le cahier des charges ?}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+\subsection*{Action intégrale}
+On choisit d’utiliser un correcteur intégral dont la fonction de transfert est  $C(p)=\dfrac{K_I}{p}$.
+\subparagraph{}
+\textit{Faire un bilan, dans un tableau, de l’influence de la présence d’un correcteur intégral sur les 2 performances : stabilité et précision.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+\subsection*{Action dérivée}
+On choisit d’utiliser un correcteur dérivé dont la fonction de transfert est  $C(p)=K_Dp$.
+\subparagraph{}
+\textit{Faire un bilan, dans un tableau, de l’influence de la présence d’un correcteur dérivé sur les 2 performances : stabilité et précision}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi.
+
+\subsection*{Correcteur PID}
+Afin de profiter des avantages des trois actions précédentes, on utilise un correcteur Proportionnel-Intégral-Dérivé :
+$C(p)=K_p+K_D p+\dfrac{K_I}{p}=K\dfrac{1+\dfrac{2\xi}{\omega_0}  p+\dfrac{p^2}{\omega_0^2}}{p}$.
+  
+\subparagraph{}
+\textit{Que dire sur les critères de précision du cahier des charges avec ce correcteur.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+\subparagraph{}
+\textit{En faisant varier $K$, $\xi$ et $\omega_0$, observer leur influence sur la rapidité (bande passante de la FTBF).}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+Afin de vérifier le critère sur la marge de gain on va trouver des paramètres pour que la phase de la FTBO soit toujours supérieure à -180\degres..
+\subparagraph{}
+\textit{Quel est l’influence de $K$, $\xi$ et $\omega_0$, sur la phase de la FTBO ? }
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+\subparagraph{}
+\textit{Trouver un couple de valeur de $K$ et $\omega_0$ permettant de vérifier le cahier des charges : proposez une méthodologie.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+%Repartir du système sans correction
+\subsection*{Correcteur à avance de phase}
+On choisit d’utiliser un correcteur à avance de phase dont la fonction de transfert est 
+$C(p)=\dfrac{K (1+aTp)}{1+Tp}$avec $a>1$.
+\subparagraph{}
+\textit{Déterminer les paramètres du correcteur à avance de phase pour vérifier le critère de stabilité.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+\subsection*{Correcteur à retard de phase}
+On choisit d’utiliser un correcteur à retard de phase dont la fonction de transfert est $C(p)=K (\dfrac{1+Tp}{1+bTp}$ avec $b>1$.
+\subparagraph{}
+\textit{Déterminer les paramètres du correcteur à retard de phase pour vérifier le critère de précision sans impacter la stabilité du système.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+\subsection*{Correcteur « compensateur »}
+On choisit un correcteur, réalisable numériquement, de fonction de transfert :	$C(p)=K_c\dfrac{ N(p)}{D(p)}=K_c\dfrac{1+\dfrac{2\xi}{\omega_0} p+\dfrac{p^2}{\omega_0^2}}{1+\dfrac{2\xi_c}{\omega_c}  p+\dfrac{p^2}{\omega_c^2 }}$.
+Caractéristiques du correcteur :	
+\begin{itemize}
+\item le gain $K_c$ du correcteur est choisi égal à 50 ;
+\item le facteur d’amortissement $\xi_c$ est choisi égal à 0,7 ;
+\item le numérateur $N(p)$ de $C(p)$ est choisi égal au terme du second ordre du dénominateur de la fonction $H(p)$.
+\end{itemize}
+\subparagraph{}
+\textit{Justifier les choix de la valeur du gain de boucle $K_c$ et celle du facteur d’amortissement $\xi_c$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+\subparagraph{}
+\textit{Donner la nouvelle expression de la FTBO. Expliquer le nom de ce correcteur.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+\subparagraph{}
+\textit{Que vaut la phase de la FTBO pour $\omega_c$ ? Pour quelles valeurs de $\omega_c$  le système est-il instable ?}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+\subparagraph{}
+\textit{Donner la valeur de $\omega_c$  qui permet de vérifier la marge de phase de 60\degres.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+\end{multicols}
+\end{document}	
+
+
+\subparagraph{}
+\textit{}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
