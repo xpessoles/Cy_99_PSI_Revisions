@@ -13,7 +13,7 @@
 %\fichefalse
 
 \proftrue
-\proffalse
+%\proffalse
 
 \tdtrue
 %\tdfalse
@@ -93,7 +93,7 @@ Cycle 99 -- Révisions\\% afin de valider leurs performances.\\
 \def\pathfig{images}
 
 \ifprof
-%\begin{multicols}{2}
+\begin{multicols}{2}
 \else
 \begin{multicols}{2}
 \fi
@@ -142,7 +142,7 @@ On modélise cet asservissement par le schéma bloc suivant.
 \end{center}
 $C(p)$ est la fonction de transfert du correcteur, $FTBO_{nc}(p)$ est la fonction de transfert de la FTBO non corrigée : 
 $$
-FTBO_{nc}(p)=\dfrac{0,01}{p\left(1+\dfrac{2 0,0032}{161,7}p + \dfrac{p^2}{161,7^2} \right)}.
+FTBO_{nc}(p)=\dfrac{0,01}{p\left(1+\dfrac{2\cdot 0,0032}{161,7}p + \dfrac{p^2}{161,7^2} \right)}.
 $$
 
 \textbf{Les questions seront traitées de manière analytique en TD puis en utilisant Scilab en TP.}
@@ -153,6 +153,11 @@ $$
 \textit{Déterminer les niveaux des 6 critères du cahier des charges. Conclure.}
 \ifprof
 \begin{corrige}
+La boucle ouverte est de classe 1. On a donc : 
+\begin{itemize}
+\item $\varepsilon_S=\SI{0}{mm}$ >> CDC OK;
+\item $\varepsilon_T=\dfrac{0,2}{0,01}=\SI{20}{mm}$.
+\end{itemize}
 \end{corrige}
 \else
 \fi
