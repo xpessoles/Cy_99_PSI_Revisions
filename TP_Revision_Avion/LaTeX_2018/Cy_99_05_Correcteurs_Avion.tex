@@ -93,7 +93,7 @@ Cycle 99 -- Révisions\\% afin de valider leurs performances.\\
 \def\pathfig{images}
 
 \ifprof
-\begin{multicols}{2}
+%\begin{multicols}{2}
 \else
 \begin{multicols}{2}
 \fi
@@ -156,14 +156,37 @@ $$
 La boucle ouverte est de classe 1. On a donc : 
 \begin{itemize}
 \item $\varepsilon_S=\SI{0}{mm}$ >> CDC OK;
-\item $\varepsilon_T=\dfrac{0,2}{0,01}=\SI{20}{mm}$.
+\item $\varepsilon_T=\dfrac{0,2}{0,01}=\SI{20}{mm}$ >> CDC pas OK.
 \end{itemize}
+On trace le diagramme de Bode :
+\begin{itemize}
+\item Marge de phase : 90\degres >> CDC OK;
+\item Marge de gain : \SI{40,29}{dB} >> CDC OK.
+\end{itemize}
+
+On peut aussi déterminer les marges par le calcul :
+\begin{itemize}
+\item module de la fonction de transfert : 
+$H_{\text{dB}}(\omega)=20\log K - 20 \log \omega - 20 \log \left( \sqrt{ \left(1-\dfrac{\omega^2}{\omega_0^2} \right)^2+\left(\dfrac{2\xi\omega}{\omega_0} \right)^2}\right)$;
+\item argument de la fonction de transfert : 
+$\varphi(\omega)=\arg\left(0,01\right)-\arg\left(j\omega\right)-\arg\left(0,01\right)-\arg \left( \left(1-\dfrac{\omega^2}{\omega_0^2} \right)+\left(\dfrac{2\xi\omega}{\omega_0} \right)j\right)$.
+\end{itemize}
+
+
+On commence par résoudre $H_{\text{dB}}(\omega_{\SI{0}{dB}})=0 \Rightarrow \omega_{\SI{0}{dB}}=0,01$ et $\varphi(0,01)=-\SI{90}{\degres}$. La marge de phase est donc de $M\varphi=-\SI{90}{\degres}-\left(-\SI{180}{\degres}\right)=90\degres$.
+
+On résout maintenant $\varphi(\omega_{\SI{180}{\degres}})=-180\degres$ et $\omega_{\SI{180}{\degres}}=\omega_0$. On calcule ensuite $H_{\text{dB}}(\omega_{\SI{180}{\degres}})=-\SI{40,29}{dB}$ soit une marge de gain de \SI{40,29}{dB}.
+
+
+Le dépassement et le temps de réponse ne peuvent pas être déterminés analytiquement. 
+
+
 \end{corrige}
 \else
 \fi
 
 \begin{obj}
-L’objectif du TP est de trouver les caractéristiques d’un correcteur qui permet de valider le cahier des charges.
+L’objectif du TP (TD) est de trouver les caractéristiques d’un correcteur qui permet de valider le cahier des charges.
 \end{obj}
 
 \subsection*{Action proportionnelle}
@@ -174,6 +197,10 @@ On choisit d’utiliser un correcteur proportionnel dont la fonction de transfer
 \textit{Trouver la plus grande valeur de $K_p$ qui permet de vérifier les marges de stabilité.}
 \ifprof
 \begin{corrige}
+\textbf{Réglage de la marge de gain}
+On a vu que pour le système non corrigé, la marge de gain était de \SI{40,29}{dB}. Pour être à la limite de la stabilité, on pourrait augmenter le gain de $20\log K_p = \SI{30,29}{dB} \Rightarrow K_p = {32,7} $.
+
+Dans ces conditions, la marge de phase vaut : 
 \end{corrige}
 \else
 \fi
@@ -331,7 +358,12 @@ Caractéristiques du correcteur :
 \fi
 
 
+
+\ifprof
+%\begin{multicols}{2}
+\else
 \end{multicols}
+\fi
 \end{document}	
 
 
