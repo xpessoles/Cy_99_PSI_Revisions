@@ -1,0 +1,204 @@
+\documentclass[10pt,fleqn]{article} % Default font size and left-justified equations
+\usepackage[%
+    pdftitle={Modélisation dynamique},
+    pdfauthor={Xavier Pessoles}]{hyperref}
+
+    
+\input{style/new_style}
+\input{style/macros_SII}
+\usepackage{multicol}
+\usepackage{siunitx}
+%\usepackage{picins}
+\fichetrue
+%\fichefalse
+
+\proftrue
+\proffalse
+
+\tdtrue
+%\tdfalse
+
+\courstrue
+\coursfalse
+
+
+\def\classe{\textsf{PSI$\star$ -- MP}}
+\def\xxnumpartie{Cycle 99}
+\def\xxpartie{Révisions}
+
+\def\xxnumchapitre{}%Chapitre 1 \vspace{.2cm}}
+\def\xxchapitre{}%\hspace{.12cm} Approche énergétique}
+
+\def\discipline{Sciences \\Industrielles de \\ l'Ingénieur}
+\def\xxtete{Sciences Industrielles de l'Ingénieur}
+
+
+
+
+\def\xxtitreexo{Bras manipulateur collaboratif ZE Solution}
+\def\xxsourceexo{\hspace{.2cm} \textsl{Concours Centrale Supelec MP 2016}
+}
+
+
+\def\xxposongletx{2}
+\def\xxposonglettext{1.45}
+\def\xxposonglety{20}
+%\def\xxonglet{Part. 1 -- Ch. 3}
+\def\xxonglet{\textsf{Cycle 99}}
+
+\def\xxactivite{Application}
+\def\xxauteur{\textsl{Xavier Pessoles}}
+
+\def\xxcompetences{%
+\textsl{%
+\textbf{Savoirs et compétences :}\\
+%Les sources sont associées par un \emph{hacheur série}. La détermination des grandeurs électriques associées à ce montage permet de conclure vis à vis du cahier des charges.
+%\noindent \textbf{Résoudre :} à partir des modèles retenus :
+%\begin{itemize}[label=\ding{112},font=\color{ocre}] 
+%\item choisir une méthode de résolution analytique, graphique, numérique;
+%\item mettre en \oe{}uvre une méthode de résolution.
+%\end{itemize}
+%\begin{itemize}[label=\ding{112},font=\color{ocre}] 
+%\item \textit{Rés -- C1.1 :} Loi entrée sortie géométrique et cinématique -- Fermeture géométrique.
+%\end{itemize}
+%
+%\noindent \textit{Mod2 -- C4.1 :} Représentation par schéma bloc.
+}}
+
+\def\xxfigures{
+\includegraphics[width=.7\linewidth]{images/fig_00}
+}%figues de la page de garde
+
+
+\def\xxpied{%
+Cycle 99 -- Révisions\\% afin de valider leurs performances.\\
+Bras manipulateur collaboratif ZE Solution %-- \xxactivite%
+}
+
+\setcounter{secnumdepth}{5}
+%---------------------------------------------------------------------------
+
+\usepackage{pgfplots}
+\begin{document}
+\def\pathfig{images}
+%\chapterimage{png/Fond_Cin}
+\input{style/new_pagegarde}
+\vspace{4.5cm}
+\pagestyle{fancy}
+\thispagestyle{plain}
+
+\def\columnseprulecolor{\color{ocre}}
+\setlength{\columnseprule}{0.4pt} 
+
+\def\pathfig{images}
+
+\ifprof
+%\begin{multicols}{2}
+\else
+\begin{multicols}{2}
+\fi
+
+
+\subsection*{Présentation du système}
+\setcounter{subparagraph}{0}
+Le bras manipulateur collaboratif ZE Solution est un bras collaboratif permettant d'assister des opérateurs à manipuler des charges allant jusqu'à \SI{200}{kg} << sans effort >>. 
+
+
+\begin{center}
+\includegraphics[width=\linewidth]{images/fig_01}
+%\textit{Illustration du pilotage à distance du système ROBOVOLC}
+\end{center}
+
+Le schéma-blocs de la chaîne de motorisation asservie est présenté sur le document réponse.
+
+Le calculateur de la boucle de vitesse génère la consigne de courant d’intensité $i_c(t)$ à imposer au moteur brushless en comparant la vitesse angulaire de consigne à la vitesse angulaire réelle mesurée par un capteur de vitesse placé sur l’arbre moteur.
+
+La boucle interne de courant du moteur brushless est considérée parfaite et en conséquence est modélisée par un gain unitaire, comme indiquée dans le document réponse.
+
+Le couple $C_m(t)$ fourni par le moteur brushless au réducteur vérifie la relation $C_m(t)=K_mi(t)$.
+
+\textbf{Paramètres géométriques et cinématiques :}
+\begin{itemize}
+\item vitesse angulaire du moteur $\omega_m(t)\vect{z}$;
+\item vitesse angulaire du tambour $\omega_T(t)\vect{z}$;
+\item rayon du tambour et de la poulie de renvoi : $R=\SI{0,05}{m}$;
+\item rapport de réduction du réducteur : $\dfrac{1}{\rho}=\dfrac{\omega_T(t)}{\omega_m(t)}$ avec $\rho=15,88$;
+\item vitesse linéaire de la masse en translation : $v(t)\vect{z}=\dot{z}\vect{z}$.
+\end{itemize}
+
+\textbf{Paramètres massiques et d'inertie :}
+\begin{itemize}
+\item masse entraînée $M$ de centre de gravité $G$, $M\leq \SI{200}{kg}$;
+\item inertie du moto-réducteur autour de son axe de rotation, rapportée sur l’axe du moteur brushless $J_0=\SI{0,00315}{kg.m^2}$.
+\end{itemize}
+
+\textbf{Le cahier des charges est le suivant : }
+\begin{itemize}
+\item stabilité : $M_{\varphi}=80\degres$;
+\item précision : 
+\begin{itemize}
+\item écart statique permanent vis-à-vis d'une entrée en échelon : nul;
+\item écart statique permanent vis-à-vis de la perturbation (B) constante : nul;
+\end{itemize}
+\item rapidité : pulsation de coupure à \SI{0}{dB} de la fonction de transfert en boucle ouverte : $\omega_{\SI{0}{dB}}=\SI{40}{rad.s^{-1}}$.
+\end{itemize}
+On note $\omega_{mc}(t)$ la vitesse angulaire de consigne et $C_v(p)$ la fonction de transfert du correcteur de la boucle de vitesse.
+
+On pose $v(t)=K_r \omega_m(t)=$ avec $K_r>0$ par convention.
+\subparagraph{}
+\textit{Déterminer la valeur numérique de $K_r$.}%. Vérifier que l’actionneur retenu permet de respecter l’exigence id 1.4.1.
+
+L'application du théorème de l'énergie cinétique permet de montrer que $A\dot{\omega}_m(t)=C_m(t)-B(t)$ avec $A=J_0+MK_r^2$ avec $B(t)=MgK_r u(t)$.
+
+\subparagraph{}
+\textit{Compléter le schéma-blocs du document réponses (dans le domaine de Laplace) en fonction des paramètres $A$, $\rho$, $R$ et $K_m$. Les conditions initiales sont supposées nulles.}
+
+Pour une charge à déplacer de $M=\SI{100}{kg}$, la fonction de transfert en boucle ouverte non corrigée (c’est-à-dire en considérant $C_v(p)=1$) vaut numériquement : $\text{FTBO}_{\text{nc}}(p)=\dfrac{K_{\text{BO}}}{p}$ avec $K_{\text{BO}}=218$.
+
+\subparagraph{}
+\textit{Déterminer la marge de phase $M_{\varphi}$. Est-ce satisfaisant vis-à-vis du critère de stabilité du cahier des charges ?}
+
+Le constructeur choisit un correcteur de type Proportionnel Intégral : $C_v(p)= K_i\left(1+ \dfrac{1}{T_i p}\right)$.
+
+\subparagraph{}
+\textit{Quelle performance du cahier des charges justifie l’utilisation de ce type de correcteur ? Tracer le diagramme de Bode asymptotique du correcteur $C_v(p)$ en précisant les points caractéristiques en fonction de $K_i$ et $T_i$.}
+
+
+\subparagraph{}
+\textit{Déterminer la valeur numérique de $T_i$ afin que la marge de phase du système corrigé soit exactement de 80\degres  tout en respectant l’exigence de rapidité du cahier des charges. En déduire alors la valeur de $K_i$ permettant
+de satisfaire l’ensemble des performances attendues dans le cahier des charges.}
+
+
+Les réponses temporelles simulée et réelle de la chaîne de motorisation asservie (avec une charge à déplacer de masse $M=\SI{100}{kg}$) à un échelon de vitesse de consigne de \SI{5 000}{tr.min^{-1}} avec les réglages déterminés
+précédemment sont fournies sur la figure suivante.
+
+
+\begin{center}
+\includegraphics[width=\linewidth]{images/fig_03}
+%\textit{Illustration du pilotage à distance du système ROBOVOLC}
+\end{center}
+
+\subparagraph{}
+\textit{Comparer les résultats simulés et les résultats expérimentaux sur les critères du temps de réponse à 5\%
+et de la valeur finale.}
+
+
+
+\end{multicols}
+
+\begin{center}
+\includegraphics[width=\linewidth]{images/fig_02}
+%\textit{Illustration du pilotage à distance du système ROBOVOLC}
+\end{center}
+
+
+\end{document}	
+
+
+\subparagraph{}
+\textit{}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
