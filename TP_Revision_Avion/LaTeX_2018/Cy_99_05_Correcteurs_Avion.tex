@@ -198,9 +198,15 @@ On choisit d’utiliser un correcteur proportionnel dont la fonction de transfer
 \ifprof
 \begin{corrige}
 \textbf{Réglage de la marge de gain}
-On a vu que pour le système non corrigé, la marge de gain était de \SI{40,29}{dB}. Pour être à la limite de la stabilité, on pourrait augmenter le gain de $20\log K_p = \SI{30,29}{dB} \Rightarrow K_p = {32,7} $.
+On a vu que pour le système non corrigé, la marge de gain était de \SI{40,29}{dB}. Pour être à la limite de la stabilité, on pourrait augmenter le gain de $20\log K_p = \SI{30,29}{dB} \Rightarrow K_p = {32,7} $. Il faut donc $K_p\leq 32,7$.
 
-Dans ces conditions, la marge de phase vaut : 
+Dans ces conditions, la marge de phase vaut : 90\degres.
+
+\textbf{Réglage de la marge de phase}
+On cherche $\omega$ tel que $\varphi\left( \omega\right)=-120\degres$. On a alors $\omega=\SI{160,806}{rad.s^{-1}}$. On cherche donc $K_p $ tel que $H_{\text{dB}}(160,806)=\SI{0}{dB}$. Pour le système non corrigé, on a $H_{\text{dB}}(160,806)=-\SI{46,22}{dB}$. On a donc $K_p = 205$.
+
+... Quasiment impossible à régler en raison de la raideur de la pente sur la phase...
+
 \end{corrige}
 \else
 \fi
@@ -209,6 +215,7 @@ Dans ces conditions, la marge de phase vaut :
 \textit{Expliquer pourquoi l’écart de position (ou écart statique) ne dépend pas de la valeur de $K_p$.}
 \ifprof
 \begin{corrige}
+BO de classe 1. 
 \end{corrige}
 \else
 \fi
@@ -217,6 +224,7 @@ Dans ces conditions, la marge de phase vaut :
 \textit{Trouver la plus grande valeur de $K_p$ qui permet de vérifier l'écart de trainage. Conclure.}
 \ifprof
 \begin{corrige}
+On cherche $K_p$ tel que $\dfrac{0,1}{0,01K}=0,2 \Leftrightarrow K=\dfrac{0,1}{0,01\cdot 0,2 }= 100$. Il faut donc $K_p\geq50$.
 \end{corrige}
 \else
 \fi
@@ -243,6 +251,7 @@ On choisit d’utiliser un correcteur intégral dont la fonction de transfert es
 \textit{Faire un bilan, dans un tableau, de l’influence de la présence d’un correcteur intégral sur les 2 performances : stabilité et précision.}
 \ifprof
 \begin{corrige}
+On a maintenant une BO de classe 2 et donc l'erreur de trainage sera nulle. Cependant, l'intégrateur ajoute au système un déphasage de 90\degres ce qui se traduit par une phase qui sera toujours strictement inférieure à 180\degres. La marge de phase sera donc négative et le système sera instable. 
 \end{corrige}
 \else
 \fi
@@ -253,9 +262,32 @@ On choisit d’utiliser un correcteur dérivé dont la fonction de transfert est
 \textit{Faire un bilan, dans un tableau, de l’influence de la présence d’un correcteur dérivé sur les 2 performances : stabilité et précision}
 \ifprof
 \begin{corrige}
+L'apport de phase va stabiliser le système. Cependant, le système sera alors de classe nulle et il sera impossible d'avoir un système précis << statiquement >>.
 \end{corrige}
 \else
 \fi.
+
+\subsection*{Correcteur à avance de phase}
+On choisit d’utiliser un correcteur à avance de phase dont la fonction de transfert est 
+$C(p)=\dfrac{K (1+aTp)}{1+Tp}$avec $a>1$.
+\subparagraph{}
+\textit{Déterminer les paramètres du correcteur à avance de phase pour vérifier le critère de stabilité.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+\subsection*{Correcteur à retard de phase}
+On choisit d’utiliser un correcteur à retard de phase dont la fonction de transfert est $C(p)=K \dfrac{1+Tp}{1+bTp}$ avec $b>1$.
+\subparagraph{}
+\textit{Déterminer les paramètres du correcteur à retard de phase pour vérifier le critère de précision sans impacter la stabilité du système.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 \subsection*{Correcteur PID}
 Afin de profiter des avantages des trois actions précédentes, on utilise un correcteur Proportionnel-Intégral-Dérivé :
@@ -295,26 +327,6 @@ Afin de vérifier le critère sur la marge de gain on va trouver des paramètres
 \fi
 
 %Repartir du système sans correction
-\subsection*{Correcteur à avance de phase}
-On choisit d’utiliser un correcteur à avance de phase dont la fonction de transfert est 
-$C(p)=\dfrac{K (1+aTp)}{1+Tp}$avec $a>1$.
-\subparagraph{}
-\textit{Déterminer les paramètres du correcteur à avance de phase pour vérifier le critère de stabilité.}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-\subsection*{Correcteur à retard de phase}
-On choisit d’utiliser un correcteur à retard de phase dont la fonction de transfert est $C(p)=K (\dfrac{1+Tp}{1+bTp}$ avec $b>1$.
-\subparagraph{}
-\textit{Déterminer les paramètres du correcteur à retard de phase pour vérifier le critère de précision sans impacter la stabilité du système.}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
 
 
 \subsection*{Correcteur « compensateur »}
