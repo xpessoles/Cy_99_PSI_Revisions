@@ -66,7 +66,7 @@
 }}
 
 \def\xxfigures{
-\includegraphics[width=.6\linewidth]{images/fig_01}
+\includegraphics[width=.4\linewidth]{images/fig_01}
 }%figues de la page de garde
 
 
@@ -153,7 +153,39 @@ position haute.
 \includegraphics[width=\linewidth]{images/fig_06}
 \end{center}
 
+\subsection*{Vérin d'ouverture}
+La pièce \textbf{7} est la lame de
+déneigement articulée par
+rapport au châssis \textbf{3}. Elle est
+mise en mouvement par le
+vérin \textbf{\{10 ; 11\}}.
 
+\begin{center}
+\includegraphics[width=\linewidth]{images/fig_07}
+\end{center}
+
+
+\subsection*{Données et hypothèses}
+$\vect{HJ}=h\vect{z_1}$, $\vect{HQ}=a\vect{x_3}+b\vect{y_3}+c\vect{z_3}$, $\vect{HG}=i\vect{z_1}$, $\vect{HM}=f\vect{x_3}+g\vect{z_3}$, $\gamma = \angl{x_3}{x_7}= \angl{z_3}{z_7}$, $\beta=\left(\vect{x_3},\vect{x_{11}}=\vect{x_{10}}\right)=\left(\vect{z_3},\vect{z_{11}}=\vect{z_{10}}\right)$.
+
+\begin{itemize}
+\item L’étude se passe à hauteur constante avec $\beta=37\degres$ et $\gamma=16\degres$ et $\vect{g}=-g\vect{y_3}$.
+\item Liaisons parfaites (pas de jeu, pas de frottement).
+\item Le poids de toutes les pièces est négligé, sauf celui de la pièce \textbf{7}, $m_7=\SI{850}{kg}$ appliqué en $G$.
+\item Dimensions en mètres : $h = \SI{0.68}{m}$, $ a = - \SI{0.33}{m}$, $b = \SI{0.1}{m}$, $c = \SI{1.1}{m}$ et $i = \SI{0.5}{m}$.
+\item L’action de la neige sur le volet 7 est modélisée par un glisseur de moment nul en $Q$ tel que : $\torseurstat{T}{\text{neige}}{7}=\torseurl{Q\vect{x_7}}{\vect{0}}{Q}$ avec $Q=\SI{15000}{N}$.
+\item Le vérin d’ouverture choisit supporte une pression d'alimentation de \SI{150}{bars}.
+\end{itemize}
+
+
+\section*{Questions}
+
+\begin{enumerate}
+\item Retrouver la démarche permettant tracer la loi liant la longueur du vérin et l’angle de levage.
+\item Proposer une démarche permettant de vérifier si la course du vérin de levage est bien dimensionnée à partir des données précédentes.
+\item Proposer une modélisation cinématique permettant le levage. On précisera les conditions de montages éventuelles.
+\item Proposer une démarche permettant de vérifier si la pression d'alimentation du vérin d’ouverture est suffisante pour « chasser la neige ».
+\end{enumerate}
 \ifprof
 %\end{multicols}
 \else
