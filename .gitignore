@@ -6,8 +6,16 @@
 *.idx
 *.synctex.gz
 *.ptc
+*.ptc
+
 
 08_SLCI_Correcteurs/TableTracante/
+MinesTelecom/Exercice_03/
+MinesTelecom/Exercice_04/
+MinesTelecom/Exercice_05/
+MinesTelecom/Exercice_06/
+MinesTelecom/Exercice_07/
+
 
 # Windows image file caches
 Thumbs.db
